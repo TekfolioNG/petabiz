@@ -5,7 +5,8 @@
       <transition-group name="slide" tag="div" class="h-full">
         <div v-for="(slide, index) in slides" :key="index" v-show="currentSlide === index"
           class="absolute inset-0 w-screen h-full">
-          <img :src="slide.image" :alt="slide.alt" class="w-full h-full object-cover object-center" />
+          <img :src="slide.image" :alt="slide.alt" class="w-full h-full object-cover"
+            :class="slide.objectPosition || 'object-center'" />
           <!-- Enhanced gradient overlay for better text contrast -->
           <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/30" />
         </div>
@@ -31,7 +32,7 @@
             <div v-if="slides[currentSlide].buttonText" class="mt-8 w-full flex justify-start hero-button-container">
               <NuxtLink :to="slides[currentSlide].buttonLink"
                 class="px-6 py-3 text-white font-medium transition-all duration-300 text-lg transform hover:scale-105 inline-block"
-                :style="{ backgroundColor: '#D2691E' }">
+                :style="{ backgroundColor: '#336699' }">
                 {{ slides[currentSlide].buttonText }}
               </NuxtLink>
             </div>
@@ -44,14 +45,14 @@
     <div class="absolute bottom-8 left-0 right-0 z-30 flex justify-center gap-2">
       <button v-for="(_, index) in slides" :key="index" @click="setSlide(index)"
         class="w-12 h-1.5 transition-all duration-300 rounded-full"
-        :class="currentSlide === index ? 'bg-[#D2691E]' : 'bg-white/40 hover:bg-white/60'"
+        :class="currentSlide === index ? 'bg-[#ff6701]' : 'bg-white/40 hover:bg-white/60'"
         :aria-label="`Go to slide ${index + 1}`">
       </button>
     </div>
 
     <!-- Progress bar -->
     <div class="absolute bottom-0 left-0 right-0 z-30 h-1 bg-white/20">
-      <div class="bg-[#D2691E] h-full transition-all duration-300 ease-linear" :style="{ width: `${progress}%` }">
+      <div class="bg-[#ff6701] h-full transition-all duration-300 ease-linear" :style="{ width: `${progress}%` }">
       </div>
     </div>
   </main>
@@ -60,46 +61,38 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-// Import images with new paths
-import carRentalImage from '~/assets/img/car-rental-bot.png';
-import oilGasImage from '~/assets/img/oil-and-gas-bot.png';
-import realEstateImage from '~/assets/img/real-estate-bot.png';
-import travelImage from '~/assets/img/travel-agency-bot.jpg';
+// Import images for Petabiz
+import jamesLadipoImage from '~/assets/img/james-ladipo.png';
+import petabizTrainingImage from '~/assets/img/petabiz-training.jpg';
+import petabizTraining2Image from '~/assets/img/petabiz-training2.jpg';
 
 const SLIDE_DURATION = 8000; // 8 seconds per slide
 const slides = [
   {
-    image: carRentalImage,
-    alt: 'Car Rental Services',
-    title: 'Safe, Fast, and Affordable Car Rentals',
-    description: 'Inbound and outbound Lagos travel for individuals, families, and groups — in comfortable cars, hatchbacks, and buses.',
-    buttonLink: '/car-rentals',
-    buttonText: 'Book Your Ride'
+    image: jamesLadipoImage,
+    alt: 'Petabiz Leadership Excellence',
+    title: 'Build the Workplace of the Future',
+    description: 'We champion strengths-based culture with engagement and leadership excellence. Identify talents, leverage strengths, and increase employee engagement for bottom-line results.',
+    buttonLink: '/training',
+    buttonText: 'Explore Growth-Focused Leader (GFL) Program'
   },
   {
-    image: travelImage,
-    alt: 'Car Rental Services',
-    title: 'Travel the World with Ease',
-    description: 'Local or international, we handle all your flight and travel bookings, totally hassle-free.',
-    buttonLink: '/travel',
-    buttonText: 'Book Your Trip'
+    image: petabizTrainingImage,
+    alt: 'Petabiz Team Development',
+    title: 'Rethink Talent & Leadership',
+    description: 'Using CliftonStrengths and e2grow, we develop transformational habits that create engaged employees, healthy workplace culture, and high-performing teams.',
+    buttonLink: '/coaching',
+    buttonText: 'Discover High-Performing Teams (HPT) Program'
   },
   {
-    image: realEstateImage,
-    alt: 'Real Estate Services',
-    title: 'Buy, Sell, or Lease with Confidence',
-    description: 'Trusted property deals, land advisory, and development across Nigeria.',
-    buttonLink: '/properties',
-    buttonText: 'Explore Properties'
-  },
-  {
-    image: oilGasImage,
-    alt: 'Oil and Gas Services',
-    title: 'Reliable Energy Solutions',
-    description: 'From household to industrial needs, we supply quality petroleum products with speed and safety.',
-    buttonLink: '/oil-gas',
-    buttonText: 'Our Energy Solutions'
+    image: petabizTraining2Image,
+    alt: 'Empower the Next Generation',
+    title: 'Equipping Entrepreneurs',
+    description: 'Transforming organizations through High-Performing Teams Training, Growth-Focused Leader Coaching, and Youth Empowerment Mentoring for sustainable business success.',
+    buttonLink: '/mentoring',
+    buttonText: 'Discover Sustainable Business Success'
   }
+
 ]
 
 const currentSlide = ref(0)

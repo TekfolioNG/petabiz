@@ -104,24 +104,7 @@ const submitForm = async (event) => {
       },
       body: requestBody,
       timeout: 30000,
-      retry: 0,
-      onRequest({ request, options }) {
-        console.log('Making request to:', request);
-        console.log('Request options:', options);
-      },
-      onRequestError({ request, options, error }) {
-        console.error('Request error:', error);
-        console.log('Failed request:', request);
-        console.log('Request options:', options);
-      },
-      onResponse({ request, response, options }) {
-        console.log('Response received:', response.status, response.statusText);
-        console.log('Response headers:', Object.fromEntries(response.headers.entries()));
-      },
-      onResponseError({ request, response, options }) {
-        console.error('Response error:', response.status, response.statusText);
-        console.log('Error response:', response);
-      }
+      retry: 0
     })
 
     console.log('API response:', result);
@@ -145,44 +128,15 @@ const submitForm = async (event) => {
   } catch (error) {
     console.error('=== Form Submission Error ===');
     console.error('Error object:', error);
-    console.error('Error name:', error.name);
-    console.error('Error message:', error.message);
-    console.error('Error stack:', error.stack);
-
-    if (error.data) {
-      console.error('Error data:', error.data);
-    }
-
-    if (error.response) {
-      console.error('Error response:', error.response);
-    }
 
     let errorMessage = 'An unexpected error occurred. Please try again.'
 
-    // Handle different error types
     if (error.statusCode === 400) {
-      console.log('Bad Request Error (400)');
       errorMessage = error.data?.message || error.statusMessage || 'Please check your form data and try again.'
-    } else if (error.statusCode === 408) {
-      console.log('Timeout Error (408)');
-      errorMessage = 'Request timed out. Please try again.'
-    } else if (error.statusCode === 429) {
-      console.log('Rate Limit Error (429)');
-      errorMessage = 'Too many requests. Please wait a moment and try again.'
-    } else if (error.statusCode >= 500) {
-      console.log('Server Error (5xx):', error.statusCode);
-      errorMessage = 'Server error occurred. Please try again in a few minutes.'
     } else if (error.data?.message) {
-      console.log('Error with data message:', error.data.message);
       errorMessage = error.data.message
     } else if (error.message) {
-      console.log('Error with message:', error.message);
       errorMessage = error.message
-    }
-
-    // Add debug info in development
-    if (process.dev) {
-      errorMessage += ` (Debug: ${error.statusCode || 'Unknown'} - ${error.name || 'Unknown Error'})`;
     }
 
     formStatus.value = {
@@ -196,8 +150,6 @@ const submitForm = async (event) => {
       formStatus.value.message = ''
       formStatus.value.error = false
     }, 8000)
-
-    console.log('=== End Form Submission Error ===');
   }
 }
 
@@ -207,21 +159,21 @@ definePageMeta({
 })
 
 useHead({
-  title: 'Contact Us | Get In Touch',
+  title: 'Contact Us | Petabiz Nigeria',
   meta: [
-    { property: 'og:title', content: 'Contact Us | Professional Services' },
-    { property: 'og:description', content: 'Get in touch with our team for professional consultation and services. We\'re here to help with your business needs.' },
-    { property: 'og:image', content: '/contact-og.jpg' },
+    { property: 'og:title', content: 'Contact Us | Petabiz Nigeria - Human Capital Development' },
+    { property: 'og:description', content: 'Get in touch with Petabiz Nigeria for world-class strengths-based training, leadership coaching, and organizational development. Let\'s transform your workplace together.' },
+    { property: 'og:image', content: '/petabiz-contact-og.jpg' },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '630' },
-    { property: 'og:image:alt', content: 'Contact Us - Professional Services' },
+    { property: 'og:image:alt', content: 'Contact Petabiz Nigeria - Human Capital Development' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Contact Us | Professional Services' },
-    { name: 'twitter:description', content: 'Get in touch with our team for consultation and services.' },
-    { name: 'twitter:image', content: '/contact-og.jpg' }
+    { name: 'twitter:title', content: 'Contact Us | Petabiz Nigeria' },
+    { name: 'twitter:description', content: 'Partner with Petabiz Nigeria for transformational leadership and organizational excellence.' },
+    { name: 'twitter:image', content: '/petabiz-contact-og.jpg' }
   ],
   link: [
-    { rel: 'canonical', href: 'https://yourwebsite.com/contact' }
+    { rel: 'canonical', href: 'https://petabiznigeria.com/contact' }
   ],
 });
 </script>
@@ -232,13 +184,10 @@ useHead({
 
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 overflow-hidden bg-gray-900">
-
       <!-- Decorative Elements -->
-      <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute -top-40 -right-40 w-80 h-80 rounded-full">
-        </div>
-        <div class="absolute -bottom-40 -left-40 w-80 h-80 rounded-full">
-        </div>
+      <div class="absolute inset-0 overflow-hidden opacity-10">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-[#ff6701] rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-[#ffa164] rounded-full blur-3xl"></div>
       </div>
 
       <div class="relative container mx-auto px-8 lg:px-16 xl:px-20 2xl:px-32">
@@ -247,39 +196,40 @@ useHead({
           <!-- Left Content -->
           <div class="text-center lg:text-left">
             <div
-              class="inline-flex items-center px-4 py-2 bg-[#F4A460]/20 rounded-full text-[#F4A460] font-medium text-sm mb-6">
-              <span class="w-2 h-2 bg-[#F4A460] rounded-full mr-2"></span>
-              Let's Connect
+              class="inline-flex items-center px-4 py-2 bg-[#ff6701]/20 rounded-full text-[#ffa164] font-medium text-sm mb-6">
+              <span class="w-2 h-2 bg-[#ff6701] rounded-full mr-2"></span>
+              Let's Modernize Your Workplace
             </div>
 
             <h1 class="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Get in
               <span class="relative">
-                <span class="text-[#F4A460]">Touch</span>
+                <span class="text-[#ff6701]">Touch</span>
                 <svg class="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 200 12" fill="none">
-                  <path d="M2 10C50 5 100 2 198 8" stroke="#F4A460" stroke-width="3" stroke-linecap="round"
+                  <path d="M2 10C50 5 100 2 198 8" stroke="#ff6701" stroke-width="3" stroke-linecap="round"
                     fill="none" />
                 </svg>
               </span>
             </h1>
 
             <p class="text-xl text-gray-100 mb-8 max-w-lg">
-              Ready to start a conversation? We're here to listen, help, and turn your ideas into reality.
+              Ready to build a strengths-based culture? We're here to partner with you in developing exceptional leaders
+              and high-performing teams.
             </p>
 
             <!-- Quick Stats -->
-            <div class="grid grid-cols-3 gap-8 pt-8 border-t border-[#F4A460]">
+            <div class="grid grid-cols-3 gap-8 pt-8 border-t border-[#ff6701]/30">
               <div class="text-center">
-                <div class="text-2xl font-bold text-[#F4A460] mb-1">24h</div>
+                <div class="text-2xl font-bold text-[#ff6701] mb-1">24h</div>
                 <div class="text-sm text-gray-100">Response Time</div>
               </div>
               <div class="text-center">
-                <div class="text-2xl font-bold text-[#F4A460] mb-1">500+</div>
-                <div class="text-sm text-gray-100">Happy Clients</div>
+                <div class="text-2xl font-bold text-[#ff6701] mb-1">15k+</div>
+                <div class="text-sm text-gray-100">Hours Training</div>
               </div>
               <div class="text-center">
-                <div class="text-2xl font-bold text-[#F4A460] mb-1">99%</div>
-                <div class="text-sm text-gray-100">Satisfaction</div>
+                <div class="text-2xl font-bold text-[#ff6701] mb-1">5k+</div>
+                <div class="text-sm text-gray-100">Assessments</div>
               </div>
             </div>
           </div>
@@ -288,7 +238,7 @@ useHead({
           <div class="flex justify-center lg:justify-end">
             <div class="relative">
               <div
-                class="absolute inset-0 bg-gradient-to-r from-[#F4A460]/30 to-amber-300/30 rounded-3xl transform rotate-6">
+                class="absolute inset-0 bg-gradient-to-r from-[#ff6701]/30 to-[#ffa164]/30 rounded-3xl transform rotate-6">
               </div>
               <div class="relative bg-white rounded-3xl p-8 shadow-2xl">
                 <DotLottieVue style="height: 320px; width: 320px" class="mx-auto" autoplay loop
@@ -309,7 +259,7 @@ useHead({
           <div
             class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
             <div
-              class="w-14 h-14 bg-gradient-to-br from-[#D2691E] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              class="w-14 h-14 bg-gradient-to-br from-[#336699] to-[#1a3d5c] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
@@ -317,18 +267,18 @@ useHead({
             </div>
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Email Us</h3>
             <p class="text-gray-600 dark:text-gray-400 mb-4">Send us an email and we'll respond within 24 hours</p>
-            <a href="mailto:contact@example.com"
-              class="text-[#D2691E] font-semibold hover:text-amber-600 transition-colors">
-              info@botintegrated.com
-              support@botintegrated.com
+            <a href="mailto:info@petabiz.com"
+              class="text-[#336699] font-semibold hover:text-[#ff6701] transition-colors block mb-1">
+              info@petabiz.com
             </a>
+
           </div>
 
           <!-- Phone Card -->
           <div
             class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
             <div
-              class="w-14 h-14 bg-gradient-to-br from-[#D2691E] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              class="w-14 h-14 bg-gradient-to-br from-[#336699] to-[#1a3d5c] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z">
@@ -336,10 +286,10 @@ useHead({
               </svg>
             </div>
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Call Us</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-4">Available Monday to Friday, 9AM-6PM</p>
-            <a href="tel:+1234567890" class="text-[#D2691E] font-semibold hover:text-amber-600 transition-colors">
-              +234 805 524 8406
-              <br>+234 802 200 7759</br>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">Available Monday to Friday, 9AM-5PM</p>
+            <a href="tel:+2348023267433"
+              class="text-[#336699] font-semibold hover:text-[#ff6701] transition-colors block mb-1">
+              +234 802 326 7433
             </a>
           </div>
 
@@ -347,7 +297,7 @@ useHead({
           <div
             class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
             <div
-              class="w-14 h-14 bg-gradient-to-br from-[#D2691E] to-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              class="w-14 h-14 bg-gradient-to-br from-[#336699] to-[#1a3d5c] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd"
                   d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
@@ -355,10 +305,11 @@ useHead({
               </svg>
             </div>
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Visit Us</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-4">Come say hello at our office headquarters</p>
-            <address class="text-[#D2691E] font-semibold not-italic">
-              32 Owulade Street Irawo Bus Stop, Bako Estate,<br>
-              along Ikorodu Road Lagos
+            <p class="text-gray-600 dark:text-gray-400 mb-4">Come say hello at our office</p>
+            <address class="text-[#336699] font-semibold not-italic">
+              77 Awolowo Road, MAN House<br>
+              (4th Floor) Ikeja, Lagos, Nigeria.</br>
+
             </address>
           </div>
 
@@ -377,22 +328,21 @@ useHead({
               Send us a Message
             </h2>
             <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Have a question or want to discuss a project? Fill out the form below and we'll get back to you as soon as
-              possible.
+              Want to transform your organizational culture and productivity? Fill out the form below and our team will
+              get back to you
+              within 24 hours.
             </p>
           </div>
 
           <!-- Contact Form -->
           <div class="relative">
-            <!-- Form Background with subtle pattern -->
             <div
-              class="absolute inset-0 bg-gradient-to-br from-gray-50 to-orange-50 dark:from-gray-900 dark:to-gray-800 rounded-3xl">
+              class="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 rounded-3xl">
             </div>
             <div
               class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-200/50 dark:border-gray-700/50">
 
               <form @submit="submitForm" class="space-y-8" novalidate>
-                <!-- Honeypot field for spam protection -->
                 <input type="checkbox" name="botcheck" style="display: none;">
 
                 <!-- Form Grid -->
@@ -406,11 +356,8 @@ useHead({
                     <div class="relative">
                       <input type="text" id="name" name="name" v-model="formData.name" required minlength="2"
                         maxlength="100"
-                        class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#D2691E] focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+                        class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#336699] focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
                         placeholder="Enter your full name" autocomplete="name">
-                      <div
-                        class="absolute inset-0 rounded-xl ring-2 ring-transparent group-focus-within:ring-[#D2691E]/20 transition-all duration-300 pointer-events-none">
-                      </div>
                     </div>
                   </div>
 
@@ -421,11 +368,8 @@ useHead({
                     </label>
                     <div class="relative">
                       <input type="email" id="email" name="email" v-model="formData.email" required maxlength="150"
-                        class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#D2691E] focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+                        class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#336699] focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
                         placeholder="your.email@example.com" autocomplete="email">
-                      <div
-                        class="absolute inset-0 rounded-xl ring-2 ring-transparent group-focus-within:ring-[#D2691E]/20 transition-all duration-300 pointer-events-none">
-                      </div>
                     </div>
                   </div>
 
@@ -436,11 +380,8 @@ useHead({
                     </label>
                     <div class="relative">
                       <input type="tel" id="phone" name="phone" v-model="formData.phone" maxlength="20"
-                        class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#D2691E] focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
-                        placeholder="+1 (555) 123-4567" autocomplete="tel">
-                      <div
-                        class="absolute inset-0 rounded-xl ring-2 ring-transparent group-focus-within:ring-[#D2691E]/20 transition-all duration-300 pointer-events-none">
-                      </div>
+                        class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#336699] focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+                        placeholder="+234 800 000 0000" autocomplete="tel">
                     </div>
                   </div>
 
@@ -450,13 +391,15 @@ useHead({
                       Subject <span class="text-red-500">*</span>
                     </label>
                     <div class="relative">
-                      <input type="text" id="subject" name="subject" v-model="formData.subject" required minlength="3"
-                        maxlength="200"
-                        class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#D2691E] focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
-                        placeholder="What's this about?">
-                      <div
-                        class="absolute inset-0 rounded-xl ring-2 ring-transparent group-focus-within:ring-[#D2691E]/20 transition-all duration-300 pointer-events-none">
-                      </div>
+                      <select id="subject" name="subject" v-model="formData.subject" required
+                        class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#336699] focus:border-transparent transition-all duration-300">
+                        <option value="">Select a service...</option>
+                        <option value="Training - HPT Program">Training - High-Performing Teams</option>
+                        <option value="Coaching - GFL Program">Coaching - Growth-Focused Leaders</option>
+                        <option value="Mentoring - Youth Empowerment">Mentoring - Youth Empowerment</option>
+                        <option value="CliftonStrengths Assessment">CliftonStrengths® Assessment</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                      </select>
                     </div>
                   </div>
 
@@ -470,19 +413,15 @@ useHead({
                   <div class="relative">
                     <textarea id="message" name="message" v-model="formData.message" rows="6" required minlength="10"
                       maxlength="2000"
-                      class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#D2691E] focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400 resize-none"
-                      placeholder="Tell us about your inquiry or project..."></textarea>
-                    <div
-                      class="absolute inset-0 rounded-xl ring-2 ring-transparent group-focus-within:ring-[#D2691E]/20 transition-all duration-300 pointer-events-none">
-                    </div>
+                      class="w-full px-4 py-4 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-[#336699] focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400 resize-none"
+                      placeholder="Tell us about your organization and how we can help..."></textarea>
                   </div>
                 </div>
 
                 <!-- Submit Button -->
                 <div class="flex justify-center pt-6">
                   <button type="submit" :disabled="formStatus.loading"
-                    class="group relative px-8 py-4 bg-gradient-to-r from-[#D2691E] to-amber-600 text-white font-bold text-lg rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#D2691E]/30 min-w-[200px]"
-                    :aria-label="formStatus.loading ? 'Sending message...' : 'Send message'">
+                    class="group relative px-8 py-4 bg-gradient-to-r from-[#336699] to-[#1a3d5c] text-white font-bold text-lg rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#336699]/30 min-w-[200px]">
                     <span v-if="!formStatus.loading" class="flex items-center justify-center">
                       Send Message
                       <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300"
@@ -512,8 +451,7 @@ useHead({
                     'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-700 dark:text-green-300': formStatus.success,
                     'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-700 dark:text-red-300': formStatus.error,
                     'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-700 dark:text-blue-300': formStatus.loading
-                  }" class="border-2 px-6 py-4 rounded-xl" role="status"
-                    :aria-live="formStatus.error ? 'assertive' : 'polite'">
+                  }" class="border-2 px-6 py-4 rounded-xl" role="status">
                     <div class="flex items-center">
                       <svg v-if="formStatus.success" class="w-5 h-5 mr-3 flex-shrink-0" fill="currentColor"
                         viewBox="0 0 20 20">
@@ -527,15 +465,6 @@ useHead({
                           d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                           clip-rule="evenodd"></path>
                       </svg>
-                      <div v-else-if="formStatus.loading" class="w-5 h-5 mr-3 flex-shrink-0">
-                        <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                          </circle>
-                          <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                          </path>
-                        </svg>
-                      </div>
                       <p class="font-medium">{{ formStatus.message }}</p>
                     </div>
                   </div>
@@ -549,7 +478,7 @@ useHead({
 
     <!-- FAQ Section -->
     <section
-      class="py-20 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      class="py-20 bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto">
           <div class="text-center mb-16">
@@ -567,12 +496,12 @@ useHead({
               class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
               <div class="p-6">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center">
-                  <span class="w-2 h-2 bg-[#D2691E] rounded-full mr-3"></span>
+                  <span class="w-2 h-2 bg-[#336699] rounded-full mr-3"></span>
                   How quickly do you respond to inquiries?
                 </h3>
                 <p class="text-gray-900 dark:text-gray-300 pl-5">
-                  We typically respond to all inquiries within 24 hours during business days. For urgent matters, please
-                  call us directly.
+                  We typically respond to all inquiries within 24 hours during business days. For urgent training or
+                  coaching needs, please call us directly.
                 </p>
               </div>
             </div>
@@ -582,12 +511,13 @@ useHead({
               class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
               <div class="p-6">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center">
-                  <span class="w-2 h-2 bg-[#D2691E] rounded-full mr-3"></span>
-                  What information should I include in my message?
+                  <span class="w-2 h-2 bg-[#336699] rounded-full mr-3"></span>
+                  What is CliftonStrengths® Assessment?
                 </h3>
                 <p class="text-gray-900 dark:text-gray-300 pl-5">
-                  Please include details about your project, timeline, budget range, and any specific requirements. The
-                  more information you provide, the better we can assist you.
+                  CliftonStrengths® is a powerful online assessment tool that identifies your unique talents and
+                  strengths. Our Gallup-certified coaches use these insights to develop personalized training and
+                  coaching programs.
                 </p>
               </div>
             </div>
@@ -597,12 +527,12 @@ useHead({
               class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
               <div class="p-6">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center">
-                  <span class="w-2 h-2 bg-[#D2691E] rounded-full mr-3"></span>
+                  <span class="w-2 h-2 bg-[#336699] rounded-full mr-3"></span>
                   Do you offer free consultations?
                 </h3>
                 <p class="text-gray-900 dark:text-gray-300 pl-5">
-                  Yes! We offer complimentary initial consultations to discuss your needs and how we can help achieve
-                  your goals.
+                  Yes! We offer complimentary initial consultations to understand your organization's needs and discuss
+                  how our strengths-based approach can drive exceptional workplace performance.
                 </p>
               </div>
             </div>
@@ -610,8 +540,6 @@ useHead({
         </div>
       </div>
     </section>
-
-    <!-- Social Media Links -->
 
   </div>
 </template>

@@ -4,33 +4,33 @@ definePageMeta({
 });
 
 useHead({
-  title: 'BOT Integrated Services | One Platform, Many Solutions',
+  title: 'Petabiz Nigeria | Succeed with Strength',
   meta: [
     {
       property: 'og:title',
-      content: 'BOT Integrated Services | Travel, Real Estate, Rentals & Energy'
+      content: 'Petabiz Nigeria | Human Capital Development & Leadership Excellence'
     },
     {
       property: 'og:description',
-      content: 'Your one-stop partner for travel bookings, real estate, car rentals, and oil & gas solutions. Reliable, affordable, and customer-focused services in and out of Lagos.'
+      content: 'Transform your organization with strengths-based training, coaching, and mentoring. Partnering with Gallup to build high-performing teams and exceptional leaders across Nigeria.'
     },
-    { property: 'og:image', content: '/botintegrated-og.jpg' },
+    { property: 'og:image', content: '/petabiz-og.jpg' },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '630' },
     {
       property: 'og:image:alt',
-      content: 'BOT Integrated Services - Travel, Real Estate, Rentals & Energy'
+      content: 'Petabiz Nigeria - Human Capital Development & Leadership Excellence'
     },
     { name: 'twitter:card', content: 'summary_large_image' },
     {
       name: 'twitter:title',
-      content: 'BOT Integrated Services | Travel, Real Estate, Rentals & Energy'
+      content: 'Petabiz Nigeria | Human Capital Development & Leadership Excellence'
     },
     {
       name: 'twitter:description',
-      content: 'Trusted services for travel, property, rentals, and energy solutions. Fast, safe, and reliable support across Nigeria.'
+      content: 'Build strengths-based culture with CliftonStrengths training, executive coaching, and youth empowerment programs. Trusted partner for organizational transformation.'
     },
-    { name: 'twitter:image', content: '/botintegrated-og.jpg' }
+    { name: 'twitter:image', content: '/petabiz-og.jpg' }
   ]
 });
 
@@ -39,9 +39,10 @@ useHead({
 
 <template>
   <LandingContainer>
-    <LandingHero></LandingHero>
-    <LandingIntro></LandingIntro>
-    <LandingServices></LandingServices>
+    <LandingHero />
+    <LandingIntro />
+    <LandingPartners />
+    <LandingCoaches />
   </LandingContainer>
-  <LandingCta></LandingCta>
+  <LandingCta />
 </template>

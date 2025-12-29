@@ -3,10 +3,11 @@ import { onMounted, onUnmounted, ref } from 'vue';
 
 const menuitems = [
   { title: "HOME", path: "/" },
-  { title: "TRAVEL", path: "/travel" },
-  { title: "CAR RENTALS", path: "/car-rentals" },
-  { title: "PROPERTIES", path: "/properties" },
-  { title: "OIL & GAS", path: "/oil-gas" },
+  { title: "ABOUT US", path: "/about" },
+  { title: "TRAINING", path: "/training" },
+  { title: "COACHING", path: "/coaching" },
+  { title: "MENTORING", path: "/mentoring" },
+  { title: "CONTACT US", path: "/contact" },
 ];
 
 const open = ref(false);
@@ -32,13 +33,14 @@ onUnmounted(() => {
       <header class="flex items-center justify-between py-4 md:py-6">
         <!-- Logo section -->
         <NuxtLink to="/" class="inline-block">
-          <img src="assets/img/bot-logo.png" alt="Bot Integrated Services Logo" class="h-10 md:h-12 drop-shadow-lg" />
+          <img src="assets/img/petabiz-logo.png" alt="Bot Integrated Services Logo"
+            class="h-14 md:h-16 drop-shadow-lg" />
         </NuxtLink>
 
         <!-- Desktop Navigation with Contact Info -->
         <div class="hidden md:flex items-center space-x-8 lg:space-x-12">
           <nav class="absolute left-1/2 transform -translate-x-1/2">
-            <ul class="flex space-x-6 lg:space-x-8">
+            <ul class="flex space-x-4 lg:space-x-6">
               <li v-for="item in menuitems" :key="item.title">
                 <NuxtLink :to="item.path" class="text-sm lg:text-base transition-colors duration-200 font-medium"
                   :class="isScrolled ? 'text-gray-900 hover:text-[#D2691E]' : 'text-white hover:text-[#D2691E]'">
@@ -49,7 +51,7 @@ onUnmounted(() => {
           </nav>
 
           <!-- Contact Info - Stacked in top right -->
-          <div class="ml-4 pl-4 border-l border-gray-200/50">
+          <div class="ml-4 pl-4 border-l">
             <div class="text-right space-y-1">
               <div class="flex items-center justify-end space-x-1.5">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5"
@@ -58,10 +60,10 @@ onUnmounted(() => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <a href="tel:+2348022007759"
-                  :class="isScrolled ? 'text-gray-700 hover:text-[#D2691E]' : 'text-gray-200 hover:text-white'"
+                <a href="tel:+2348023267433"
+                  :class="isScrolled ? 'text-gray-900 hover:text-[#D2691E]' : 'text-gray-200 hover:text-white'"
                   class="text-sm font-medium transition-colors">
-                  +234 805 524 8406, 0802 200 7759
+                  +234 802 326 7433
                 </a>
               </div>
               <div class="flex items-center justify-end space-x-1.5">
@@ -71,10 +73,10 @@ onUnmounted(() => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:info@botintegrated.com"
+                <a href="mailto:info@petabiz.com"
                   :class="isScrolled ? 'text-gray-700 hover:text-[#D2691E]' : 'text-gray-200 hover:text-white'"
                   class="text-sm font-medium transition-colors">
-                  info@botintegrated.com
+                  info@petabiz.com
                 </a>
               </div>
             </div>
@@ -99,7 +101,7 @@ onUnmounted(() => {
       <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95"
         enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75"
         leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-        <div v-show="open" class="md:hidden mt-2 py-2 rounded-lg shadow-lg bg-white/95">
+        <div v-show="open" class="md:hidden mt-2 py-2 rounded-lg shadow-lg bg-white/40 backdrop-blur-sm w-1/2 ml-auto">
           <NuxtLink v-for="item in menuitems" :key="item.title" :to="item.path"
             class="block px-4 py-3 text-sm font-medium text-gray-900 hover:text-[#D2691E] transition-colors duration-200"
             @click="open = false">
@@ -114,7 +116,7 @@ onUnmounted(() => {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <a href="tel:+2348022007759" class="text-xs text-gray-700 hover:text-[#D2691E]">+234 802 200 7759</a>
+              <a href="tel: +2348023267433" class="text-xs text-gray-700 hover:text-[#D2691E]">+234 802 326 7433</a>
             </div>
             <div class="flex items-center space-x-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24"
@@ -122,8 +124,8 @@ onUnmounted(() => {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <a href="mailto:info@botintegrated.com"
-                class="text-xs text-gray-700 hover:text-[#D2691E]">info@botintegrated.com</a>
+              <a href="mailto:info@petabiz.com" class="text-xs text-gray-700 hover:text-[#D2691E]">
+                info@petabiz.com</a>
             </div>
           </div>
         </div>

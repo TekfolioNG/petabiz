@@ -2,17 +2,17 @@
   <footer class="bg-gray-900 text-white pt-16 pb-8 px-6 sm:px-8">
     <div class="container mx-auto">
       <!-- Main Footer -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         <!-- Column 1: Logo and About -->
-        <div class="md:col-span-4 flex flex-col items-center md:items-start">
+        <div class="flex flex-col items-center md:items-start">
           <NuxtLink to="/">
-            <img src="~/assets/img/bot-logo.png" alt="BOT Integrated Services Logo" class="h-12 md:h-14" />
+            <img src="~/assets/img/petabiz-logo.png" alt="Petabiz Nigeria Limited Logo" class="h-14 md:h-16" />
           </NuxtLink>
 
           <p class="text-gray-300 leading-relaxed mb-6 text-center md:text-left mt-4">
-            BOT Integrated Services is your trusted one-stop solution for travel booking, real estate transactions,
-            and oil & gas supply. We bring convenience, reliability, and transparent pricing to essential services
-            across Nigeria, making your everyday transactions simpler and stress-free.
+            Petabiz Nigeria Limited is a human capacity development company interfacing with a
+            globally distinguished Data Research Enterprise – GALLUP whose prime mission is solving
+            the world's challenging problems of human capital development.
           </p>
           <NuxtLink to="/contact"
             class="text-[#D2691E] hover:text-white transition-colors text-sm inline-flex items-center">
@@ -21,10 +21,10 @@
           </NuxtLink>
         </div>
 
-        <!-- Column 2: Quick Links -->
-        <div class="md:col-span-2 flex flex-col items-center md:items-start">
+        <!-- Column 2: Our Services -->
+        <div class="flex flex-col items-center md:items-center">
           <h3 class="text-lg font-semibold mb-6 text-[#D2691E]">
-            Quick Links
+            Our Services
           </h3>
           <ul class="space-y-3 text-center md:text-left">
             <li>
@@ -33,18 +33,23 @@
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/travel" class="text-gray-300 hover:text-white transition-colors">
-                Travel & Ticketing
+              <NuxtLink to="/about" class="text-gray-300 hover:text-white transition-colors">
+                About Us
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/properties" class="text-gray-300 hover:text-white transition-colors">
-                Properties
+              <NuxtLink to="/training" class="text-gray-300 hover:text-white transition-colors">
+                Training
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="/oil-gas" class="text-gray-300 hover:text-white transition-colors">
-                Oil & Gas Supply
+              <NuxtLink to="/coaching" class="text-gray-300 hover:text-white transition-colors">
+                Coaching
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/mentoring" class="text-gray-300 hover:text-white transition-colors">
+                Mentoring
               </NuxtLink>
             </li>
             <li>
@@ -55,47 +60,8 @@
           </ul>
         </div>
 
-        <!-- Column 3: Our Services -->
-        <div class="md:col-span-3 flex flex-col items-center md:items-start">
-          <h3 class="text-lg font-semibold mb-6 text-[#D2691E]">
-            Our Services
-          </h3>
-          <ul class="space-y-3 text-center md:text-left">
-            <li>
-              <NuxtLink to="/travel" class="text-gray-300 hover:text-white transition-colors">
-                Flight Bookings
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/travel" class="text-gray-300 hover:text-white transition-colors">
-                Travel Planning
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/properties" class="text-gray-300 hover:text-white transition-colors">
-                Property Sales & Leasing
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/properties" class="text-gray-300 hover:text-white transition-colors">
-                Real Estate Investment
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/oil-gas" class="text-gray-300 hover:text-white transition-colors">
-                LPG Supply
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/oil-gas" class="text-gray-300 hover:text-white transition-colors">
-                Petroleum Products
-              </NuxtLink>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Column 4: Contact Info -->
-        <div class="md:col-span-3 flex flex-col items-center md:items-start">
+        <!-- Column 3: Contact Info -->
+        <div class="flex flex-col items-center md:items-start">
           <h3 class="text-lg font-semibold mb-6 text-[#D2691E]">
             Contact Us
           </h3>
@@ -106,7 +72,7 @@
               </div>
               <div class="text-gray-300 text-sm">
                 <strong class="block text-white mb-1">Office Address:</strong>
-                32 Owulade Street Irawo Bus Stop, Bako Estate, along Ikorodu Road Lagos
+                77 Awolowo Road, MAN House <br>(4th Floor) Ikeja, Lagos, Nigeria.</br>
               </div>
             </li>
             <li class="flex flex-col md:flex-row items-center md:items-start">
@@ -115,8 +81,9 @@
               </div>
               <div class="text-gray-300 text-sm">
                 <strong class="block text-white mb-1">Tel:</strong>
-                +234 805 524 8406
-                <br>+234 802 200 7759</br>
+                <a href="tel:+2348023267433" class="hover:text-[#D2691E] transition-colors">
+                  +234 802 326 7433
+                </a>
               </div>
             </li>
             <li class="flex flex-col md:flex-row items-center md:items-start">
@@ -125,12 +92,8 @@
               </div>
               <div class="text-gray-300 text-sm">
                 <strong class="block text-white mb-1">E-mail:</strong>
-                <a href="mailto:info@botintegrated.com" class="hover:text-[#D2691E] transition-colors">
-                  info@botintegrated.com
-                </a>
-                <br>
-                <a href="mailto:support@botintegrated.com" class="hover:text-[#D2691E] transition-colors">
-                  support@botintegrated.com
+                <a href="mailto:info@petabiz.com" class="hover:text-[#D2691E] transition-colors">
+                  info@petabiz.com
                 </a>
               </div>
             </li>
@@ -140,7 +103,7 @@
               </div>
               <div class="text-gray-300 text-sm">
                 <strong class="block text-white mb-1">WhatsApp:</strong>
-                <a href="https://wa.me/2348055248406" class="hover:text-[#D2691E] transition-colors">
+                <a href="https://wa.me/2348023267433" target="_blank" class="hover:text-[#D2691E] transition-colors">
                   Chat with us
                 </a>
               </div>
@@ -153,14 +116,12 @@
       <div class="border-t border-gray-700 pt-6">
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
           <div class="order-2 md:order-1 text-gray-400 text-sm text-center">
-            © {{ new Date().getFullYear() }} BOT Integrated Services. All Rights Reserved.
+            © {{ new Date().getFullYear() }} Petabiz Nigeria Ltd. All Rights Reserved.
           </div>
 
-
-
           <div class="order-3 text-gray-400 text-sm text-center md:text-right">
-            Website by <NuxtLink to="https://tekfolio.ng" target="_blank"
-              class="text-gray-300 hover:text-[#D2691E] transition-colors">Tekfolio Ltd</NuxtLink>
+            Website by <a href="https://tekfolio.ng" target="_blank"
+              class="text-gray-300 hover:text-[#D2691E] transition-colors">Tekfolio Ltd</a>
           </div>
         </div>
       </div>
